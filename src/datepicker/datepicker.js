@@ -94,7 +94,8 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
       selected: model && this.compare(date, model) === 0,
       disabled: this.isDisabled(date),
       current: this.compare(date, new Date()) === 0,
-      customClass: this.customClass(date)
+      customClass: this.customClass(date),
+      customData : $scope.customData({date: date, mode: $scope.datepickerMode})
     };
   };
 
@@ -190,7 +191,8 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
     scope: {
       datepickerMode: '=?',
       dateDisabled: '&',
-      customClass: '&'
+      customClass: '&',
+      customData: '&'
     },
     require: ['datepicker', '?^ngModel'],
     controller: 'DatepickerController',
@@ -447,7 +449,8 @@ function ($compile, $parse, $document, $position, dateFilter, dateParser, datepi
       clearText: '@',
       closeText: '@',
       dateDisabled: '&',
-      customClass: '&'
+      customClass: '&',
+      customData : '&'
     },
     link: function(scope, element, attrs, ngModel) {
       var dateFormat,
